@@ -187,11 +187,12 @@ DELETE FROM employees WHERE status = 'Inactive';
 --Complex business logic
 UPDATE projects
 SET end_date = end_date + INTERVAL '30 days'
-WHERE budget > 50000
+WHERE projects.budjet > 50000
 AND dept_id IN (
     SELECT d.dept_id
     FROM departments d
     JOIN employees e ON e.department = d.dept_name
     GROUP BY d.dept_id
     HAVING COUNT(e.emp_id) > 3
+
 );
